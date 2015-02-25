@@ -77,16 +77,19 @@ def setup(app):
     app.add_config_value('link_files', {}, '')
     app.connect('builder-inited', make_links)
 
+def _extend_name(filename):
+    return filename + ' (links)'
+
 def make_links(app):
     files_def = app.config.link_files
     for filename, defn in files_def.items():
         replacer = Replacer.from_definition(defn)
-        target = filename + ' (links)'
+        target = _extend_name(filename)
         replacer.write_links(filename, target)
     app.connect('build-finished', remove_targets)
 
 def remove_targets(app, exception):
     files_def = app.config.link_files
     for filename in files_def:
-        target = filename + ' (links)'
+        target = _extend_name(filename)
         os.remove(target)

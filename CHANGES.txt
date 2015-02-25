@@ -1,0 +1,9 @@
+1.1
+===
+
+Use hgtools due to setuptools_scm #21.
+
+1.0
+===
+
+Initial release.

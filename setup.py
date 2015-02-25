@@ -18,7 +18,7 @@ sphinx = ['sphinx'] if needs_sphinx else []
 
 setup_params = dict(
 	name='rst.linker',
-	use_scm_version=True,
+	use_vcs_version=True,
 	author="Jason R. Coombs",
 	author_email="jaraco@jaraco.com",
 	description="rst.linker",
@@ -28,7 +28,7 @@ setup_params = dict(
 	install_requires=[
 	],
 	setup_requires=[
-		'setuptools_scm',
+		'hgtools',
 	] + pytest_runner + sphinx,
 	tests_require=[
 		'pytest',

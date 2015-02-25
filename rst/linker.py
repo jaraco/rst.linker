@@ -78,7 +78,8 @@ def setup(app):
     app.connect('builder-inited', make_links)
 
 def _extend_name(filename):
-    return filename + ' (links)'
+    base, ext = os.path.splitext(filename)
+    return base + ' (links)' + ext
 
 def make_links(app):
     files_def = app.config.link_files

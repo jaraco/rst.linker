@@ -1,6 +1,12 @@
 Welcome to rst.linker documentation!
 ========================================
 
+.. toctree::
+   :maxdepth: 1
+
+   history
+
+
 .. automodule:: rst.linker
     :members:
     :undoc-members:

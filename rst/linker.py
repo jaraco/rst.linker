@@ -29,6 +29,14 @@ class Repl:
     def matches(self, text):
         return re.match(self.pattern+'$', text)
 
+    def replace(self, match, replacer_vars):
+        text = match.group(0)
+        ns = match.groupdict()
+        ns.update(vars(self))
+        ns.update(replacer_vars)
+        hyperlink = '`{text} <{href}>`_'
+        return hyperlink.format(text=text, href=self.url.format(**ns))
+
 
 class Replacer(list):
     @staticmethod
@@ -60,11 +68,7 @@ class Replacer(list):
         text = match.group(0)
         # determine which replacement matched
         repl = next(repl for repl in self if repl.matches(text))
-        ns = match.groupdict()
-        ns.update(vars(self))
-        ns.update(vars(repl))
-        hyperlink = '`{text} <{href}>`_'
-        return hyperlink.format(text=text, href=repl.url.format(**ns))
+        return repl.replace(match, vars(self))
 
     def write_links(self, source, target):
         with open(source) as source:

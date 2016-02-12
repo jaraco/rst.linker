@@ -72,7 +72,7 @@ class SCMTimestamp(Repl):
     after the heading:
 
     {
-        pattern: r"^((?P<scm_version>\d+(\.\d+){1,2})\n-+\n)",
+        pattern: r"^(?m)((?P<scm_version>\d+(\.\d+){1,2})\n-+\n)",
         with_scm: "{text}\nTagged {rev[timestamp]}\n",
     }
 
@@ -88,13 +88,19 @@ class SCMTimestamp(Repl):
         ns = match.groupdict()
         ns.update(vars(self))
         ns.update(replacer_vars)
-        return self.with_scm.format(**ns)
+        return self.with_scm.format(text=text, rev=rev, **ns)
 
     @staticmethod
     def _get_scm_info_for(scm_version):
-        cmd = ['git', 'log', '-1', '--format=%ai', scm_version]
+        scm = 'hg' if os.path.isdir('.hg') else 'git'
+        commands = dict(
+            hg=['hg', 'log', '-l', '1', '--template', '{date|isodate}', '-r', scm_version],
+            git=['git', 'log', '-1', '--format=%ai', scm_version],
+        )
+        cmd = commands[scm]
         try:
             ts = subprocess.check_output(cmd).decode('utf-8').strip()
+            assert ts
         except Exception:
             return
         return dict(timestamp=ts)

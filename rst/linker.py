@@ -8,6 +8,8 @@ import operator
 import subprocess
 
 import six
+map = six.moves.map
+filter = six.moves.filter
 
 
 class Repl(object):

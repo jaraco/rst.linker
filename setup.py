@@ -29,6 +29,7 @@ setup_params = dict(
 	namespace_packages=['rst'],
 	include_package_data=True,
 	install_requires=[
+		'six',
 	],
 	extras_require={
 	},

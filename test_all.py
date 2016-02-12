@@ -68,3 +68,12 @@ def test_combined(scm_defn, linker_defn):
     result = repl.run(input)
     assert 'Tagged 2016-02' in result
     assert 'https://org.kilnhg' in result
+
+
+def test_deselected(scm_defn):
+    """
+    A URLLinker should resolve to False when initialized with an
+    scm definition.
+    """
+    repl = rst.linker.URLLinker(scm_defn)
+    assert not repl

@@ -60,11 +60,11 @@ def test_combined(scm_defn, linker_defn):
     defn['replace'].extend(scm_defn['replace'])
     repl = rst.linker.Replacer.from_definition(defn)
     input = textwrap.dedent("""
-        1.1
+        1.3
         ---
 
         Bumped to proj 1.1.
         """)
     result = repl.run(input)
-    assert 'Tagged 2015-02' in result
+    assert 'Tagged 2016-02' in result
     assert 'https://org.kilnhg' in result

@@ -1,3 +1,9 @@
+1.4
+===
+
+Refined implementation and example for linking timestamps.
+Added support for Mercurial repos.
+
 1.3.1
 =====
 

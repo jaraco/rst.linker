@@ -43,7 +43,7 @@ def scm_defn():
     )
 
 
-def test_scm_example(scm_defn, monkeypatch):
+def test_scm_example(scm_defn):
     repl = rst.linker.Replacer.from_definition(scm_defn)
     input = textwrap.dedent("""
         1.0
@@ -53,3 +53,18 @@ def test_scm_example(scm_defn, monkeypatch):
         """)
     result = repl.run(input)
     assert 'Tagged 2015-02' in result
+
+
+def test_combined(scm_defn, linker_defn):
+    defn = linker_defn
+    defn['replace'].extend(scm_defn['replace'])
+    repl = rst.linker.Replacer.from_definition(defn)
+    input = textwrap.dedent("""
+        1.1
+        ---
+
+        Bumped to proj 1.1.
+        """)
+    result = repl.run(input)
+    assert 'Tagged 2015-02' in result
+    assert 'https://org.kilnhg' in result

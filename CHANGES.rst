@@ -1,10 +1,12 @@
+1.3.1
+=====
+
+Fix error on Python 2 due to old-style class resolution.
+
 1.3
 ===
 
 Moved hosting to Github.
-
-1.2
-===
 
 Add support for linking timestamps from a git repository according to
 version tags as found in the file.

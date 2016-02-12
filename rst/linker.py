@@ -10,7 +10,7 @@ import subprocess
 import six
 
 
-class Repl:
+class Repl(object):
     @classmethod
     def from_defn(cls, defn):
         "Return the first Repl subclass that works with this"

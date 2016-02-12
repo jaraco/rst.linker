@@ -14,7 +14,7 @@ class Repl(object):
     @classmethod
     def from_defn(cls, defn):
         "Return the first Repl subclass that works with this"
-        instances = (subcl(defn) for subcl in cls.__subclasses())
+        instances = (subcl(defn) for subcl in cls.__subclasses__())
         return next(filter(None, instances))
 
     def __init__(self, defn):

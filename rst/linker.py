@@ -2,6 +2,8 @@
 Sphinx plugin to add links and timestamps to the changelog.
 """
 
+from __future__ import unicode_literals
+
 import re
 import os
 import operator

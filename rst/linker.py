@@ -149,8 +149,8 @@ class Replacer(list):
 
 
 def setup(app):
-    app.add_config_value('link_files', {}, '')
-    app.connect('builder-inited', make_links)
+    app.add_config_value(str('link_files'), {}, '')
+    app.connect(str('builder-inited'), make_links)
 
 def _extend_name(filename):
     base, ext = os.path.splitext(filename)
@@ -162,7 +162,7 @@ def make_links(app):
         replacer = Replacer.from_definition(defn)
         target = _extend_name(filename)
         replacer.write_links(filename, target)
-    app.connect('build-finished', remove_targets)
+    app.connect(str('build-finished'), remove_targets)
 
 def remove_targets(app, exception):
     files_def = app.config.link_files

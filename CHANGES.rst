@@ -1,3 +1,8 @@
+1.4.2
+=====
+
+Fix Replacer resolution on Python 2.
+
 1.4
 ===
 

@@ -30,6 +30,10 @@ class Repl(object):
     def __bool__(self):
         return False
 
+    def __nonzero__(self):
+        # Python 2.7 compatibility
+        return self.__bool__()
+
 
 class URLLinker(Repl):
     """

@@ -9,6 +9,8 @@ import os
 import operator
 import subprocess
 
+import dateutil.parser
+
 import six
 map = six.moves.map
 filter = six.moves.filter
@@ -82,6 +84,14 @@ class SCMTimestamp(Repl):
 
     If the scm_version is detected, a timestamp will be added to the
     namespace.
+
+    If detected, the rev[timestamp] is a datetime-aware timestamp,
+    so arbitrary formatting operators may be applied to it, such as
+    the following which will render as "Dec 2000":
+
+    {
+        with_scm: "{rev[timestamp]:%b %Y}",
+    }
     """
     def replace(self, match, replacer_vars):
         text = match.group(0)
@@ -105,6 +115,7 @@ class SCMTimestamp(Repl):
         try:
             ts = subprocess.check_output(cmd).decode('utf-8').strip()
             assert ts
+            ts = dateutil.parser.parse(ts)
         except Exception:
             return
         return dict(timestamp=ts)

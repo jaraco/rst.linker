@@ -55,6 +55,25 @@ def test_scm_example(scm_defn):
     assert 'Tagged 2015-02' in result
 
 
+def test_scm_custom_date_format(scm_defn):
+    with_scm = textwrap.dedent("""
+        {text}
+        Copyright {rev[timestamp]:%Y}
+        Released {rev[timestamp]:%d-%b}
+        """)
+    scm_defn['replace'][0]['with_scm'] = with_scm
+    repl = rst.linker.Replacer.from_definition(scm_defn)
+    changelog = textwrap.dedent("""
+        1.0
+        ---
+
+        Some details
+        """)
+    result = repl.run(changelog)
+    assert "Copyright 2015" in result
+    assert "Released 24-Feb" in result
+
+
 def test_combined(scm_defn, linker_defn):
     defn = linker_defn
     defn['replace'].extend(scm_defn['replace'])

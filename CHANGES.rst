@@ -1,3 +1,11 @@
+1.5
+===
+
+``timestamp`` in SCM info is now parsed into a
+timezone-aware datetime.datetime object, allowing
+for the timezone to be rendered using arbitrary
+date formatting.
+
 1.4.2
 =====
 

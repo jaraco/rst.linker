@@ -1,3 +1,10 @@
+1.6
+===
+
+Automated deployments via Travis-CI.
+
+Issue #1: Tests now xfail when no Git repository is available.
+
 1.5
 ===
 

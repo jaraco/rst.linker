@@ -1,3 +1,4 @@
+import os
 import textwrap
 
 import pytest
@@ -31,6 +32,12 @@ def test_linker_example(linker_defn):
         """)
 
 
+needs_git = pytest.mark.xfail(
+    not os.path.isdir('.git'),
+    reason="Git checkout needed",
+)
+
+
 @pytest.fixture
 def scm_defn():
     return dict(
@@ -43,6 +50,7 @@ def scm_defn():
     )
 
 
+@needs_git
 def test_scm_example(scm_defn):
     repl = rst.linker.Replacer.from_definition(scm_defn)
     input = textwrap.dedent("""
@@ -55,6 +63,7 @@ def test_scm_example(scm_defn):
     assert 'Tagged 2015-02' in result
 
 
+@needs_git
 def test_scm_custom_date_format(scm_defn):
     with_scm = textwrap.dedent("""
         {text}
@@ -74,6 +83,7 @@ def test_scm_custom_date_format(scm_defn):
     assert "Released 24-Feb" in result
 
 
+@needs_git
 def test_combined(scm_defn, linker_defn):
     defn = linker_defn
     defn['replace'].extend(scm_defn['replace'])

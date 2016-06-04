@@ -1,3 +1,9 @@
+1.6.1
+=====
+
+Explicitly specify that source file must be encoded in UTF-8
+to support encoding on systems where LANG=C.
+
 1.6
 ===
 

@@ -8,6 +8,7 @@ import re
 import os
 import operator
 import subprocess
+import io
 
 import dateutil.parser
 
@@ -157,9 +158,9 @@ class Replacer(list):
         return repl.replace(match, vars(self))
 
     def write_links(self, source, target):
-        with open(source) as source:
+        with io.open(source, encoding='utf-8') as source:
             out = self.run(source.read())
-        with open(target, 'w') as dest:
+        with open(target, 'w', encoding='utf-8') as dest:
             dest.write(out)
 
 

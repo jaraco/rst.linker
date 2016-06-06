@@ -1,7 +1,12 @@
+1.7
+===
+
+Issue #2: Suppress stderr from SCM programs.
+
 1.6.2
 =====
 
-Isuse #3: Fix incorrect call on open call to write the linked
+Issue #3: Fix incorrect call on open call to write the linked
 target.
 
 1.6.1

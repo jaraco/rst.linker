@@ -160,7 +160,7 @@ class Replacer(list):
     def write_links(self, source, target):
         with io.open(source, encoding='utf-8') as source:
             out = self.run(source.read())
-        with open(target, 'w', encoding='utf-8') as dest:
+        with io.open(target, 'w', encoding='utf-8') as dest:
             dest.write(out)
 
 

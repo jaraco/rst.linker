@@ -1,6 +1,7 @@
 import os
 import textwrap
 
+from path import Path
 import pytest
 
 import rst.linker
@@ -30,6 +31,23 @@ def test_linker_example(linker_defn):
     assert 'kilnhg' in repl.run("""
         proj 1.0 was released
         """)
+
+
+def test_write_links(linker_defn):
+    repl = rst.linker.Replacer.from_definition(linker_defn)
+    source = Path('foo.txt')
+    dest = Path('foo.out')
+    source.write_text("""
+        1.0
+        ---
+
+        proj 1.0 was released
+        """)
+    repl.write_links(source, dest)
+    res = dest.text()
+    assert 'kilnhg' in res
+    source.remove()
+    dest.remove()
 
 
 needs_git = pytest.mark.xfail(

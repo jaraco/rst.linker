@@ -114,7 +114,8 @@ class SCMTimestamp(Repl):
         )
         cmd = commands[scm]
         try:
-            ts = subprocess.check_output(cmd).decode('utf-8').strip()
+            with open(os.devnull, 'w') as devnull:
+                ts = subprocess.check_output(cmd, stderr=devnull).decode('utf-8').strip()
             assert ts
             ts = dateutil.parser.parse(ts)
         except Exception:

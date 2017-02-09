@@ -13,8 +13,7 @@ import io
 import dateutil.parser
 
 import six
-map = six.moves.map
-filter = six.moves.filter
+from six.moves import map, filter
 
 
 class Repl(object):

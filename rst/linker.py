@@ -173,12 +173,22 @@ def _extend_name(filename):
     base, ext = os.path.splitext(filename)
     return base + ' (links)' + ext
 
+def _locater(config):
+    """
+    Return a function suitable for locating the path
+    relative to the config container.
+    """
+    root = os.path.dirname(config._raw_config['__file__'])
+    return functools.partial(os.path.join, root)
+
 def make_links(app):
     files_def = app.config.link_files
+    _locate = _locater(app.config)
     for filename, defn in files_def.items():
+        source = _locate(filename)
         replacer = Replacer.from_definition(defn)
-        target = _extend_name(filename)
-        replacer.write_links(filename, target)
+        target = _extend_name(source)
+        replacer.write_links(source, target)
         remover = functools.partial(_remove, target=target)
         app.connect(str('build-finished'), remover)
 

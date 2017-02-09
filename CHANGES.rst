@@ -1,3 +1,9 @@
+1.8
+===
+
+Issue #4: Resolve deterministically the filenames relative to
+the config file.
+
 1.7
 ===
 

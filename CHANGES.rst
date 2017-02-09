@@ -1,3 +1,9 @@
+1.8.1
+=====
+
+Issue #4: Prefer public API of ``app.confdir`` to private
+API.
+
 1.8
 ===
 

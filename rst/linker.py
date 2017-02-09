@@ -173,17 +173,16 @@ def _extend_name(filename):
     base, ext = os.path.splitext(filename)
     return base + ' (links)' + ext
 
-def _locater(config):
+def _locater(app):
     """
     Return a function suitable for locating the path
     relative to the config container.
     """
-    root = os.path.dirname(config._raw_config['__file__'])
-    return functools.partial(os.path.join, root)
+    return functools.partial(os.path.join, app.confdir)
 
 def make_links(app):
     files_def = app.config.link_files
-    _locate = _locater(app.config)
+    _locate = _locater(app)
     for filename, defn in files_def.items():
         source = _locate(filename)
         replacer = Replacer.from_definition(defn)

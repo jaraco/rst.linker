@@ -9,6 +9,7 @@ import os
 import operator
 import subprocess
 import io
+import functools
 
 import dateutil.parser
 
@@ -174,14 +175,15 @@ def _extend_name(filename):
 
 def make_links(app):
     files_def = app.config.link_files
+    targets = []
     for filename, defn in files_def.items():
         replacer = Replacer.from_definition(defn)
         target = _extend_name(filename)
+        targets.append(target)
         replacer.write_links(filename, target)
-    app.connect(str('build-finished'), remove_targets)
+    remover = functools.partial(remove_targets, targets=targets)
+    app.connect(str('build-finished'), remover)
 
-def remove_targets(app, exception):
-    files_def = app.config.link_files
-    for filename in files_def:
-        target = _extend_name(filename)
+def remove_targets(app, exception, targets):
+    for target in targets:
         os.remove(target)

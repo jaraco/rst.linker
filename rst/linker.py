@@ -175,15 +175,12 @@ def _extend_name(filename):
 
 def make_links(app):
     files_def = app.config.link_files
-    targets = []
     for filename, defn in files_def.items():
         replacer = Replacer.from_definition(defn)
         target = _extend_name(filename)
-        targets.append(target)
         replacer.write_links(filename, target)
-    remover = functools.partial(remove_targets, targets=targets)
-    app.connect(str('build-finished'), remover)
+        remover = functools.partial(_remove, target=target)
+        app.connect(str('build-finished'), remover)
 
-def remove_targets(app, exception, targets):
-    for target in targets:
-        os.remove(target)
+def _remove(app, exception, target):
+    os.remove(target)

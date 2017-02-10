@@ -1,3 +1,8 @@
+1.8.2
+=====
+
+Added project description and updated changelog.
+
 1.8.1
 =====
 
@@ -9,6 +14,10 @@ API.
 
 Issue #4: Resolve deterministically the filenames relative to
 the config file.
+
+*semver deviation*: This change is backward-incompatible
+for projects that relied on paths relative to the cwd where
+the cwd was not the directory of the config file.
 
 1.7
 ===

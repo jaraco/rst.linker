@@ -135,7 +135,7 @@ class Replacer(list):
         return defn
 
     @classmethod
-    def from_definition(cls, defn, config):
+    def from_definition(cls, defn, names={}):
         """
         A definition may contain the following members:
 
@@ -144,7 +144,7 @@ class Replacer(list):
         """
         repls = map(Repl.from_defn, defn.get('replace', []))
         self = cls(repls)
-        vars(self).update(config)
+        vars(self).update(names)
         vars(self).update(defn.get('using', {}))
         return self
 

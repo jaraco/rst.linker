@@ -1,3 +1,14 @@
+1.9
+===
+
+Replacer now adds the Sphinx config namespace to the
+replacements, meaning that names like ``project``
+or ``copyright`` may be referenced in the format
+strings. This feature is particularly useful when
+coupled with the `jaraco.packaging
+<https://pypi.org/project/jaraco.packaging>`.sphinx
+plugin, which supplies a ``package_url``.
+
 1.8.2
 =====
 

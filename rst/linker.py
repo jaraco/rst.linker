@@ -135,7 +135,7 @@ class Replacer(list):
         return defn
 
     @classmethod
-    def from_definition(cls, defn):
+    def from_definition(cls, defn, config):
         """
         A definition may contain the following members:
 
@@ -144,6 +144,7 @@ class Replacer(list):
         """
         repls = map(Repl.from_defn, defn.get('replace', []))
         self = cls(repls)
+        vars(self).update(config)
         vars(self).update(defn.get('using', {}))
         return self
 
@@ -180,12 +181,24 @@ def _locater(app):
     """
     return functools.partial(os.path.join, app.confdir)
 
+
+def config_dict(config):
+    """
+    Given a Sphinx config object, return a dictionary of config
+    values.
+    """
+    return dict(
+        (key, getattr(config, key))
+        for key in config.values
+    )
+
+
 def make_links(app):
     files_def = app.config.link_files
     _locate = _locater(app)
     for filename, defn in files_def.items():
         source = _locate(filename)
-        replacer = Replacer.from_definition(defn)
+        replacer = Replacer.from_definition(defn, config_dict(app.config))
         target = _extend_name(source)
         replacer.write_links(source, target)
         remover = functools.partial(_remove, target=target)

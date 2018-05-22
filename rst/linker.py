@@ -120,7 +120,8 @@ class SCMTimestamp(Repl):
         cmd = commands[scm]
         try:
             with open(os.devnull, 'w') as devnull:
-                ts = subprocess.check_output(cmd, stderr=devnull).decode('utf-8').strip()
+                out = subprocess.check_output(cmd, stderr=devnull)
+                ts = out.decode('utf-8').strip()
             assert ts
             ts = dateutil.parser.parse(ts)
         except Exception:

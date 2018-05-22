@@ -6,6 +6,9 @@ python:
 - 2.7
 - &latest_py3 3.6
 
+git:
+  depth: 99999
+
 jobs:
   fast_finish: true
   include:

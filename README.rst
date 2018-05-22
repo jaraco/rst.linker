@@ -9,8 +9,8 @@
 .. .. image:: https://img.shields.io/appveyor/ci/jaraco/rst-linker/master.svg
 ..    :target: https://ci.appveyor.com/project/jaraco/rst-linker/branch/master
 
-.. .. image:: https://readthedocs.org/projects/rstlinker/badge/?version=latest
-..    :target: https://rstlinker.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/rstlinker/badge/?version=latest
+   :target: https://rstlinker.readthedocs.io/en/latest/?badge=latest
 
 
 ``rst.linker`` provides a routine for adding links and performing

@@ -39,7 +39,7 @@ class Repl(object):
 
 
 class URLLinker(Repl):
-    """
+    r"""
     Each replacement should have the form:
 
     {
@@ -64,7 +64,7 @@ class URLLinker(Repl):
 
 
 class SCMTimestamp(Repl):
-    """
+    r"""
     Replace content with a version number to include the date stamp
     from the SCM.
 
@@ -174,9 +174,11 @@ def setup(app):
     app.add_config_value(str('link_files'), {}, '')
     app.connect(str('builder-inited'), make_links)
 
+
 def _extend_name(filename):
     base, ext = os.path.splitext(filename)
     return base + ' (links)' + ext
+
 
 def _locater(app):
     """
@@ -207,6 +209,7 @@ def make_links(app):
         replacer.write_links(source, target)
         remover = functools.partial(_remove, target=target)
         app.connect(str('build-finished'), remover)
+
 
 def _remove(app, exception, target):
     os.remove(target)

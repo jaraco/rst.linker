@@ -11,6 +11,11 @@ with io.open('README.rst', encoding='utf-8') as readme:
 
 name = 'rst.linker'
 description = ''
+nspkg_technique = 'native'
+"""
+Does this package use "native" namespace packages or
+pkg_resources "managed" namespace packages?
+"""
 
 params = dict(
 	name=name,
@@ -22,12 +27,34 @@ params = dict(
 	url="https://github.com/jaraco/" + name,
 	packages=setuptools.find_packages(),
 	include_package_data=True,
-	namespace_packages=name.split('.')[:-1],
+	namespace_packages=(
+		name.split('.')[:-1] if nspkg_technique == 'managed'
+		else []
+	),
+	python_requires='>=2.7',
 	install_requires=[
 		'six',
 		'python-dateutil',
 	],
 	extras_require={
+		'testing': [
+			# upstream
+			'pytest>=3.5',
+			'pytest-sugar>=0.9.1',
+			'collective.checkdocs',
+			'pytest-flake8',
+
+			# local
+			'path.py',
+		],
+		'docs': [
+			# upstream
+			'sphinx',
+			'jaraco.packaging>=3.2',
+			'rst.linker>=1.9',
+
+			# local
+		],
 	},
 	setup_requires=[
 		'setuptools_scm>=1.15.0',

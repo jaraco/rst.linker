@@ -3,21 +3,19 @@
 
 .. image:: https://img.shields.io/pypi/pyversions/rst.linker.svg
 
-.. image:: https://img.shields.io/pypi/dm/rst.linker.svg
-
 .. image:: https://img.shields.io/travis/jaraco/rst.linker/master.svg
-   :target: http://travis-ci.org/jaraco/rst.linker
+   :target: https://travis-ci.org/jaraco/rst.linker
+
+.. .. image:: https://img.shields.io/appveyor/ci/jaraco/rst-linker/master.svg
+..    :target: https://ci.appveyor.com/project/jaraco/rst-linker/branch/master
+
+.. .. image:: https://readthedocs.org/projects/rstlinker/badge/?version=latest
+..    :target: https://rstlinker.readthedocs.io/en/latest/?badge=latest
+
 
 ``rst.linker`` provides a routine for adding links and performing
 other custom replacements to reStructuredText files as a Sphinx
 extension.
-
-License
-=======
-
-License is indicated in the project metadata (typically one or more
-of the Trove classifiers). For more details, see `this explanation
-<https://github.com/jaraco/skeleton/issues/1>`_.
 
 Usage
 =====

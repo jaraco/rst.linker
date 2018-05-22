@@ -3,6 +3,9 @@
 
 Refreshed package metadata.
 
+Package now presents the ``rst`` package a pkg-util
+namespace package (instead of pkg_resources).
+
 1.9
 ===
 

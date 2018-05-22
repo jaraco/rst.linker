@@ -28,7 +28,7 @@ class Repl(object):
         vars(self).update(defn)
 
     def matches(self, text):
-        return re.match(self.pattern+'$', text)
+        return re.match(self.pattern + '$', text)
 
     def __bool__(self):
         return False
@@ -109,7 +109,12 @@ class SCMTimestamp(Repl):
     def _get_scm_info_for(scm_version):
         scm = 'hg' if os.path.isdir('.hg') else 'git'
         commands = dict(
-            hg=['hg', 'log', '-l', '1', '--template', '{date|isodate}', '-r', scm_version],
+            hg=[
+                'hg', 'log',
+                '-l', '1',
+                '--template', '{date|isodate}',
+                '-r', scm_version,
+            ],
             git=['git', 'log', '-1', '--format=%ai', scm_version],
         )
         cmd = commands[scm]

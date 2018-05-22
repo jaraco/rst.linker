@@ -10,10 +10,10 @@ import rst.linker
 @pytest.fixture
 def linker_defn():
     return dict(
-        using = dict(
+        using=dict(
             kiln='https://org.kilnhg.com/Code/Repositories'
         ),
-        replace = [
+        replace=[
             dict(
                 pattern=r"proj (?P<proj_ver>\d+(\.\d+)*([abc]\d+)?)",
                 url='{kiln}/repo/proj/Files/CHANGES?rev={proj_ver}',

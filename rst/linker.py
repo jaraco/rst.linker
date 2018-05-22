@@ -122,10 +122,9 @@ class SCMTimestamp(Repl):
             with open(os.devnull, 'w') as devnull:
                 out = subprocess.check_output(cmd, stderr=devnull)
                 ts = out.decode('utf-8').strip()
-            ts = dateutil.parser.parse(ts)
+            return dict(timestamp=dateutil.parser.parse(ts))
         except Exception:
-            return
-        return dict(timestamp=ts)
+            pass
 
     def __bool__(self):
         return 'with_scm' in vars(self)

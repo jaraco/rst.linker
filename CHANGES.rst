@@ -1,3 +1,8 @@
+1.10
+====
+
+Refreshed package metadata.
+
 1.9
 ===
 
@@ -6,7 +11,7 @@ replacements, meaning that names like ``project``
 or ``copyright`` may be referenced in the format
 strings. This feature is particularly useful when
 coupled with the `jaraco.packaging
-<https://pypi.org/project/jaraco.packaging>`.sphinx
+<https://pypi.org/project/jaraco.packaging>`_.sphinx
 plugin, which supplies a ``package_url``.
 
 1.8.2

@@ -1,3 +1,9 @@
+1.11
+====
+
+Now supply the version of the package during Sphinx
+setup.
+
 1.10
 ====
 

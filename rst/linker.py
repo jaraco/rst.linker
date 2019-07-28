@@ -11,10 +11,15 @@ import subprocess
 import io
 import functools
 
-import dateutil.parser
+try:
+    import importlib.metadata as importlib_metadata
+except ImportError:
+    import importlib_metadata
 
 import six
 from six.moves import map, filter
+
+import dateutil.parser
 
 
 class Repl(object):
@@ -179,6 +184,7 @@ class Replacer(list):
 def setup(app):
     app.add_config_value(str('link_files'), {}, '')
     app.connect(str('builder-inited'), make_links)
+    return dict(version=importlib_metadata.version('rst.linker'))
 
 
 def _extend_name(filename):

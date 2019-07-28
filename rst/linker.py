@@ -184,7 +184,9 @@ class Replacer(list):
 def setup(app):
     app.add_config_value(str('link_files'), {}, '')
     app.connect(str('builder-inited'), make_links)
-    return dict(version=importlib_metadata.version('rst.linker'))
+    return dict(
+        version=importlib_metadata.version('rst.linker'), parallel_read_safe=True
+    )
 
 
 def _extend_name(filename):

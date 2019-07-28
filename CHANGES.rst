@@ -4,6 +4,10 @@
 Now supply the version of the package during Sphinx
 setup.
 
+Also supply "parallel_read_safe=True" to be explicit
+about the suspicion that this plugin is safe for
+parallel reads.
+
 1.10
 ====
 

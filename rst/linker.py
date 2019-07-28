@@ -51,6 +51,7 @@ class URLLinker(Repl):
     Currently, each named group must be unique across all Repl objects used
     in a replacement.
     """
+
     def replace(self, match, replacer_vars):
         text = match.group(0)
         ns = match.groupdict()
@@ -94,6 +95,7 @@ class SCMTimestamp(Repl):
         with_scm: "{rev[timestamp]:%b %Y}",
     }
     """
+
     def replace(self, match, replacer_vars):
         text = match.group(0)
         scm_version = match.group('scm_version')
@@ -110,10 +112,14 @@ class SCMTimestamp(Repl):
         scm = 'hg' if os.path.isdir('.hg') else 'git'
         commands = dict(
             hg=[
-                'hg', 'log',
-                '-l', '1',
-                '--template', '{date|isodate}',
-                '-r', scm_version,
+                'hg',
+                'log',
+                '-l',
+                '1',
+                '--template',
+                '{date|isodate}',
+                '-r',
+                scm_version,
             ],
             git=['git', 'log', '-1', '--format=%ai', scm_version],
         )
@@ -193,10 +199,7 @@ def config_dict(config):
     Given a Sphinx config object, return a dictionary of config
     values.
     """
-    return dict(
-        (key, getattr(config, key))
-        for key in config.values
-    )
+    return dict((key, getattr(config, key)) for key in config.values)
 
 
 def make_links(app):

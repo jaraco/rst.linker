@@ -4,7 +4,7 @@ language: python
 python:
 - 2.7
 - 3.6
-- &latest_py3 3.7
+- &latest_py3 3.8
 
 git:
   depth: 99999
@@ -16,11 +16,6 @@ jobs:
     if: tag IS present
     python: *latest_py3
     before_script: skip
-    env:
-    - TWINE_USERNAME=jaraco
-    # TWINE_PASSWORD
-    - secure: hXvC5+Nh3IZ+P9a4/duh6tVXF0YVm/QfpgfWrtEu3Me1fRpnBOn6akx+IbjgSnSGQti2v8SNG2EyBx9W756TSfXdBQIP51cassFXR+5B5ZS4pQJM57NJd3L9/cP8YNyU75NcFVSz5jlQw9au40NtjIouxvsAaU2ptuBryJSYsp+E7wEpBU3cGrpeDgMDjqW836lUb3UU/N9npZ03jD+qEjrNdDeegrYe87MDJcOGGy2XRpOcsQjQ9UDDfo8AB+7zWFBmqB6mXnpm2Gvg6SKBajT+VrHp8ncWKd2gIm59m10WKjORUhTs60OZuHz0JfraRzDcTbKjkk4ddiUQxMM7vXkMMiN2UW7LDP+5oatfo+KFc3hZ4e3a+B8sKPNSd1xGica2ha6ac7DViq20I3CHpq+nGtPF1izEjtaENon8Qn3w0srYa5hmf2UwwFR9du2HrThHyXXXZO2/s9/hRJVj4ELbgP/3H701P+wCmKuBnT7skGX0boxnWF/9/S3+xL2vHRFu1jNLMTMl0uT2DNFM/D1grVzswSr437iRSyoNeIZyqMQFXxMUTsnYIZSv+EvKoLLD1czQ74UUDoQBIJk2yEFZyMNdB7jTSfVaTJGNYf45Qkw/lcrFoTbrFwm636ev/6y+/8qEppsp9KSI61qkLyt3aA+7Dg9GTbHoBcu5cd4=
-    - TOX_TESTENV_PASSENV="TWINE_USERNAME TWINE_PASSWORD"
     script: tox -e release
 
 cache: pip

@@ -1,5 +1,5 @@
-2.0
-===
+v2.0.0
+======
 
 Drop support for Python 3.5 and earlier.
 

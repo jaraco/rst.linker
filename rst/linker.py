@@ -2,8 +2,6 @@
 Sphinx plugin to add links and timestamps to the changelog.
 """
 
-from __future__ import unicode_literals
-
 import re
 import os
 import operator
@@ -16,13 +14,10 @@ try:
 except ImportError:
     import importlib_metadata
 
-import six
-from six.moves import map, filter
-
 import dateutil.parser
 
 
-class Repl(object):
+class Repl:
     @classmethod
     def from_defn(cls, defn):
         "Return the first Repl subclass that works with this"
@@ -37,10 +32,6 @@ class Repl(object):
 
     def __bool__(self):
         return False
-
-    def __nonzero__(self):
-        # Python 2.7 compatibility
-        return self.__bool__()
 
 
 class URLLinker(Repl):
@@ -146,7 +137,7 @@ class Replacer(list):
     def load(filename):
         defn = dict()
         with open(filename) as stream:
-            six.exec_(stream.read(), defn)
+            exec(stream.read(), defn)
         return defn
 
     @classmethod

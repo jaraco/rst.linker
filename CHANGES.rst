@@ -1,3 +1,9 @@
+v2.1.0
+======
+
+Prefer commit date rather than date of the when adding SCM
+timestamps.
+
 v2.0.0
 ======
 

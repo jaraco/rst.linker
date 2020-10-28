@@ -46,7 +46,7 @@ def test_write_links(linker_defn):
         """
     )
     repl.write_links(source, dest)
-    res = dest.text()
+    res = dest.read_text()
     assert 'kilnhg' in res
     source.remove()
     dest.remove()

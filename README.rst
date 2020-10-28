@@ -1,10 +1,14 @@
 .. image:: https://img.shields.io/pypi/v/rst.linker.svg
-   :target: https://pypi.org/project/rst.linker
+   :target: `PyPI link`_
 
 .. image:: https://img.shields.io/pypi/pyversions/rst.linker.svg
+   :target: `PyPI link`_
 
-.. image:: https://img.shields.io/travis/jaraco/rst.linker/master.svg
-   :target: https://travis-ci.org/jaraco/rst.linker
+.. _PyPI link: https://pypi.org/project/rst.linker
+
+.. image:: https://github.com/jaraco/jaraco.rst/workflows/Automated%20Tests/badge.svg
+   :target: https://github.com/jaraco/jaraco.rst/actions?query=workflow%3A%22Automated+Tests%22
+   :alt: Automated Tests
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black

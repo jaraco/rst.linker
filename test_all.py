@@ -1,5 +1,5 @@
-import os
 import textwrap
+import subprocess
 
 from path import Path
 import pytest
@@ -52,9 +52,6 @@ def test_write_links(linker_defn):
     dest.remove()
 
 
-needs_git = pytest.mark.xfail(not os.path.isdir('.git'), reason="Git checkout needed")
-
-
 @pytest.fixture
 def scm_defn():
     return dict(
@@ -67,8 +64,21 @@ def scm_defn():
     )
 
 
-@needs_git
-def test_scm_example(scm_defn):
+@pytest.fixture()
+def fake_git(monkeypatch):
+    def _fake_sub(cmd, *args, **kwargs):
+        if cmd[0] != 'git':
+            raise subprocess.CalledProcessError()
+        version = cmd[-1]
+        return {
+            "1.0": '2015-02-24 22:41:28 -0600',
+            "1.3": '2016-02-12 11:05:47 -0500',
+        }[version].encode()
+
+    monkeypatch.setattr(subprocess, 'check_output', _fake_sub)
+
+
+def test_scm_example(scm_defn, fake_git):
     repl = rst.linker.Replacer.from_definition(scm_defn)
     input = textwrap.dedent(
         """
@@ -82,8 +92,7 @@ def test_scm_example(scm_defn):
     assert 'Tagged 2015-02' in result
 
 
-@needs_git
-def test_scm_custom_date_format(scm_defn):
+def test_scm_custom_date_format(scm_defn, fake_git):
     with_scm = textwrap.dedent(
         """
         {text}
@@ -106,8 +115,7 @@ def test_scm_custom_date_format(scm_defn):
     assert "Released 24-Feb" in result
 
 
-@needs_git
-def test_combined(scm_defn, linker_defn):
+def test_combined(scm_defn, linker_defn, fake_git):
     defn = linker_defn
     defn['replace'].extend(scm_defn['replace'])
     repl = rst.linker.Replacer.from_definition(defn)

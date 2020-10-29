@@ -60,7 +60,7 @@ def scm_defn():
     return dict(
         replace=[
             dict(
-                pattern=r"^(?m)((?P<scm_version>\d+(\.\d+){1,2}))\n-+\n",
+                pattern=r"(?m:^((?P<scm_version>\d+(\.\d+){1,2}))\n-+\n)",
                 with_scm="{text}\nTagged {rev[timestamp]}\n",
             )
         ]

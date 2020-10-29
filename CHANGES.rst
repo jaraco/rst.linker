@@ -1,3 +1,8 @@
+v2.1.1
+======
+
+Fix Github Actions badge.
+
 v2.1.0
 ======
 

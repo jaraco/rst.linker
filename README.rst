@@ -6,8 +6,8 @@
 
 .. _PyPI link: https://pypi.org/project/rst.linker
 
-.. image:: https://github.com/jaraco/jaraco.rst/workflows/Automated%20Tests/badge.svg
-   :target: https://github.com/jaraco/jaraco.rst/actions?query=workflow%3A%22Automated+Tests%22
+.. image:: https://github.com/jaraco/rst.linker/workflows/Automated%20Tests/badge.svg
+   :target: https://github.com/jaraco/rst.linker/actions?query=workflow%3A%22Automated+Tests%22
    :alt: Automated Tests
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg

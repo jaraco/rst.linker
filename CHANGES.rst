@@ -1,3 +1,10 @@
+v2.2.0
+======
+
+#8: Prefer author date to committer date when adding SCM
+timestamps, reverting change in 2.1, and this time tracking
+the motivation more carefully.
+
 v2.1.1
 ======
 
@@ -6,7 +13,7 @@ Fix Github Actions badge.
 v2.1.0
 ======
 
-Prefer commit date rather than date of the when adding SCM
+Prefer committer date to author date when adding SCM
 timestamps.
 
 v2.0.0

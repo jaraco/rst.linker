@@ -117,7 +117,7 @@ class SCMTimestamp(Repl):
                 '-r',
                 scm_version,
             ],
-            git=['git', 'log', '-1', '--format=%ci', scm_version],
+            git=['git', 'log', '-1', '--format=%ai', scm_version],
         )
         cmd = commands[scm]
         try:

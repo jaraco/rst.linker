@@ -36,13 +36,13 @@ class Repl:
 
 class URLLinker(Repl):
     r"""
-    Each replacement should have the form:
+    Each replacement should have the form::
 
-    {
-        pattern: "Issue #?(?P<number>\d+)",
-        url: "{bitbucket}/jaraco/rst.linker/issues/{number}",
-        bitbucket: https://bitbucket.org
-    }
+        {
+            pattern: "Issue #?(?P<number>\d+)",
+            url: "{bitbucket}/jaraco/rst.linker/issues/{number}",
+            bitbucket: https://bitbucket.org
+        }
 
     Currently, each named group must be unique across all Repl objects used
     in a replacement.
@@ -65,7 +65,7 @@ class SCMTimestamp(Repl):
     Replace content with a version number to include the date stamp
     from the SCM.
 
-    For example, consider a changelog with the following:
+    For example, consider a changelog with the following::
 
         1.0
         ---
@@ -73,23 +73,23 @@ class SCMTimestamp(Repl):
         Changed something.
 
     The following replacement definition would add a datestamp
-    after the heading:
+    after the heading::
 
-    {
-        pattern: r"(?m:^((?P<scm_version>\d+(\.\d+){1,2})\n-+\n))",
-        with_scm: "{text}\nTagged {rev[timestamp]}\n",
-    }
+        {
+            pattern: r"(?m:^((?P<scm_version>\d+(\.\d+){1,2})\n-+\n))",
+            with_scm: "{text}\nTagged {rev[timestamp]}\n",
+        }
 
     If the scm_version is detected, a timestamp will be added to the
     namespace.
 
     If detected, the rev[timestamp] is a datetime-aware timestamp,
     so arbitrary formatting operators may be applied to it, such as
-    the following which will render as "Dec 2000":
+    the following which will render as "Dec 2000"::
 
-    {
-        with_scm: "{rev[timestamp]:%b %Y}",
-    }
+        {
+            with_scm: "{rev[timestamp]:%b %Y}",
+        }
     """
 
     def replace(self, match, replacer_vars):

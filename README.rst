@@ -14,11 +14,11 @@
    :target: https://github.com/psf/black
    :alt: Code style: Black
 
-.. .. image:: https://img.shields.io/appveyor/ci/jaraco/rst-linker/master.svg
-..    :target: https://ci.appveyor.com/project/jaraco/rst-linker/branch/master
-
 .. image:: https://readthedocs.org/projects/rstlinker/badge/?version=latest
    :target: https://rstlinker.readthedocs.io/en/latest/?badge=latest
+
+.. image:: https://img.shields.io/badge/skeleton-2022-informational
+   :target: https://blog.jaraco.com/skeleton
 
 
 ``rst.linker`` provides a routine for adding links and performing

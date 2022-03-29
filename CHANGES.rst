@@ -1,3 +1,10 @@
+v2.3.0
+======
+
+#9: Fixed syntax errors in docs.
+
+Require Python 3.7 or later.
+
 v2.2.0
 ======
 

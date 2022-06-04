@@ -6,6 +6,10 @@ import pytest
 
 import rst.linker
 
+import locale
+
+locale.setlocale(locale.LC_ALL, 'C')
+
 
 @pytest.fixture
 def linker_defn():

@@ -1,10 +1,19 @@
 import textwrap
 import subprocess
+import locale
 
 from path import Path
 import pytest
 
 import rst.linker
+
+
+@pytest.fixture(scope='session', autouse=True)
+def stable_locale():
+    """
+    Fix locale to avoid failed tests under other locales.
+    """
+    locale.setlocale(locale.LC_ALL, 'C')
 
 
 @pytest.fixture

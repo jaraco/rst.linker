@@ -1,3 +1,10 @@
+v2.3.1
+======
+
+Packaging refresh.
+
+#12: Added locale stability for tests.
+
 v2.3.0
 ======
 

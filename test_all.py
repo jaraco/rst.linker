@@ -52,10 +52,11 @@ def test_write_links(linker_defn):
         ---
 
         proj 1.0 was released
-        """
+        """,
+        encoding='utf-8',
     )
     repl.write_links(source, dest)
-    res = dest.read_text()
+    res = dest.read_text(encoding='utf-8')
     assert 'kilnhg' in res
     source.remove()
     dest.remove()

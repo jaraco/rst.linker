@@ -121,9 +121,11 @@ class SCMTimestamp(Repl):
         )
         cmd = commands[scm]
         try:
-            with open(os.devnull, 'w') as devnull:
-                out = subprocess.check_output(cmd, stderr=devnull)
-                ts = out.decode('utf-8').strip()
+            with open(os.devnull, 'w', encoding='utf-8') as devnull:
+                out = subprocess.check_output(
+                    cmd, stderr=devnull, text=True, encoding='utf-8'
+                )
+                ts = out.strip()
             return dict(timestamp=dateutil.parser.parse(ts))
         except Exception:
             pass

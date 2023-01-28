@@ -1,3 +1,8 @@
+v2.4.0
+======
+
+Supply the encoding, fixing EncodingWarnings.
+
 v2.3.1
 ======
 

@@ -3,7 +3,7 @@
 
 .. image:: https://img.shields.io/pypi/pyversions/rst.linker.svg
 
-.. image:: https://github.com/jaraco/rst.linker/workflows/tests/badge.svg
+.. image:: https://github.com/jaraco/rst.linker/actions/workflows/main.yml/badge.svg
    :target: https://github.com/jaraco/rst.linker/actions?query=workflow%3A%22tests%22
    :alt: tests
 

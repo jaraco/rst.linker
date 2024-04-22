@@ -3,7 +3,6 @@ Sphinx plugin to add links and timestamps to the changelog.
 """
 
 import functools
-import io
 import operator
 import os
 import re
@@ -142,15 +141,15 @@ class Replacer(list):
         return repl.replace(match, vars(self))
 
     def write_links(self, source, target):
-        with io.open(source, encoding='utf-8') as source:
+        with open(source, encoding='utf-8') as source:
             out = self.run(source.read())
-        with io.open(target, 'w', encoding='utf-8') as dest:
+        with open(target, 'w', encoding='utf-8') as dest:
             dest.write(out)
 
 
 def setup(app):
-    app.add_config_value(str('link_files'), {}, '')
-    app.connect(str('builder-inited'), make_links)
+    app.add_config_value('link_files', {}, '')
+    app.connect('builder-inited', make_links)
     return dict(version=metadata.version('rst.linker'), parallel_read_safe=True)
 
 
@@ -184,7 +183,7 @@ def make_links(app):
         target = _extend_name(source)
         replacer.write_links(source, target)
         remover = functools.partial(_remove, target=target)
-        app.connect(str('build-finished'), remover)
+        app.connect('build-finished', remover)
 
 
 def _remove(app, exception, target):

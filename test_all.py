@@ -1,9 +1,9 @@
-import textwrap
-import subprocess
 import locale
+import subprocess
+import textwrap
 
-from path import Path
 import pytest
+from path import Path
 
 import rst.linker
 

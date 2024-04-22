@@ -2,11 +2,11 @@
 Sphinx plugin to add links and timestamps to the changelog.
 """
 
-import re
-import os
-import operator
-import io
 import functools
+import io
+import operator
+import os
+import re
 from importlib import metadata
 
 from jaraco import vcs

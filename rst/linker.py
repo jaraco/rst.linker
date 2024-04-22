@@ -6,6 +6,7 @@ import functools
 import operator
 import os
 import re
+from collections.abc import Mapping
 from importlib import metadata
 
 from jaraco import vcs
@@ -116,7 +117,7 @@ class Replacer(list):
         return defn
 
     @classmethod
-    def from_definition(cls, defn, names={}):
+    def from_definition(cls, defn, names: Mapping = {}):
         """
         A definition may contain the following members:
 

@@ -1,0 +1,1 @@
+Convert to PEP 420 native namespace package.

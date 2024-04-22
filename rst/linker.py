@@ -7,14 +7,10 @@ import os
 import operator
 import io
 import functools
+from importlib import metadata
 
 from jaraco import vcs
 from jaraco.context import suppress
-
-try:
-    import importlib.metadata as importlib_metadata  # type: ignore
-except ImportError:
-    import importlib_metadata  # type: ignore
 
 
 class Repl:
@@ -155,9 +151,7 @@ class Replacer(list):
 def setup(app):
     app.add_config_value(str('link_files'), {}, '')
     app.connect(str('builder-inited'), make_links)
-    return dict(
-        version=importlib_metadata.version('rst.linker'), parallel_read_safe=True
-    )
+    return dict(version=metadata.version('rst.linker'), parallel_read_safe=True)
 
 
 def _extend_name(filename):

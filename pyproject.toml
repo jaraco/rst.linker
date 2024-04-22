@@ -19,8 +19,9 @@ classifiers = [
 ]
 requires-python = ">=3.8"
 dependencies = [
-	"python-dateutil",
 	'importlib_metadata; python_version < "3.8"',
+	"jaraco.vcs >= 2.1",
+	"jaraco.context",
 ]
 dynamic = ["version"]
 
@@ -39,7 +40,6 @@ testing = [
 
 	# local
 	"path",
-	"types-python-dateutil",
 ]
 docs = [
 	# upstream

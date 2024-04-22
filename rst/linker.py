@@ -5,16 +5,16 @@ Sphinx plugin to add links and timestamps to the changelog.
 import re
 import os
 import operator
-import subprocess
 import io
 import functools
+
+from jaraco import vcs
+from jaraco.context import suppress
 
 try:
     import importlib.metadata as importlib_metadata  # type: ignore
 except ImportError:
     import importlib_metadata  # type: ignore
-
-import dateutil.parser
 
 
 class Repl:
@@ -104,31 +104,9 @@ class SCMTimestamp(Repl):
         return self.with_scm.format(text=text, rev=rev, **ns)
 
     @staticmethod
+    @suppress(Exception)
     def _get_scm_info_for(scm_version):
-        scm = 'hg' if os.path.isdir('.hg') else 'git'
-        commands = dict(
-            hg=[
-                'hg',
-                'log',
-                '-l',
-                '1',
-                '--template',
-                '{date|isodate}',
-                '-r',
-                scm_version,
-            ],
-            git=['git', 'log', '-1', '--format=%ai', scm_version],
-        )
-        cmd = commands[scm]
-        try:
-            with open(os.devnull, 'w', encoding='utf-8') as devnull:
-                out = subprocess.check_output(
-                    cmd, stderr=devnull, text=True, encoding='utf-8'
-                )
-                ts = out.strip()
-            return dict(timestamp=dateutil.parser.parse(ts))
-        except Exception:
-            pass
+        return dict(timestamp=vcs.repo().get_timestamp(scm_version))
 
     def __bool__(self):
         return 'with_scm' in vars(self)

@@ -1,3 +1,12 @@
+v2.5.0
+======
+
+Features
+--------
+
+- Convert to PEP 420 native namespace package.
+
+
 v2.4.0
 ======
 

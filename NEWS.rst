@@ -1,3 +1,12 @@
+v2.6.0
+======
+
+Features
+--------
+
+- Leverage jaraco.vcs for retrieving timestamps from the history.
+
+
 v2.5.0
 ======
 

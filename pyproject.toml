@@ -39,6 +39,7 @@ testing = [
 
 	# local
 	"path",
+	"pytest-subprocess",
 ]
 docs = [
 	# upstream

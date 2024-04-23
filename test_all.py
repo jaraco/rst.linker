@@ -1,5 +1,4 @@
 import locale
-import subprocess
 import textwrap
 
 import pytest
@@ -75,17 +74,11 @@ def scm_defn():
 
 
 @pytest.fixture()
-def fake_git(monkeypatch):
-    def _fake_sub(cmd, *args, **kwargs):
-        if cmd[0] != 'git':
-            raise subprocess.CalledProcessError()
-        version = cmd[-1]
-        return {
-            "1.0": '2015-02-24 22:41:28 -0600',
-            "1.3": '2016-02-12 11:05:47 -0500',
-        }[version].encode()
-
-    monkeypatch.setattr(subprocess, 'check_output', _fake_sub)
+def fake_git(fp):
+    fp.register(['git', 'status'])
+    fp.register(['git', 'version'], stdout='git version 2.44.0')
+    fp.register(['git', 'log', fp.any(), '1.0'], stdout='2015-02-24 22:41:28 -0600')
+    fp.register(['git', 'log', fp.any(), '1.3'], stdout='2016-02-12 11:05:47 -0500')
 
 
 def test_scm_example(scm_defn, fake_git):

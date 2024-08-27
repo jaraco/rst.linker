@@ -9,7 +9,7 @@ import re
 from collections.abc import Mapping
 from importlib import metadata
 
-from jaraco import vcs
+import jaraco.vcs as vcs
 from jaraco.context import suppress
 
 

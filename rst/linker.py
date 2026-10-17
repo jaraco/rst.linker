@@ -111,9 +111,9 @@ class SCMTimestamp(Repl):
 class Replacer(list):
     @staticmethod
     def load(filename):
-        defn = dict()
+        defn = {}
         with open(filename) as stream:
-            exec(stream.read(), defn)
+            exec(stream.read(), defn)  # noqa: S102 # config is trusted Python
         return defn
 
     @classmethod
@@ -142,8 +142,8 @@ class Replacer(list):
         return repl.replace(match, vars(self))
 
     def write_links(self, source, target):
-        with open(source, encoding='utf-8') as source:
-            out = self.run(source.read())
+        with open(source, encoding='utf-8') as stream:
+            out = self.run(stream.read())
         with open(target, 'w', encoding='utf-8') as dest:
             dest.write(out)
 
@@ -172,7 +172,7 @@ def config_dict(config):
     Given a Sphinx config object, return a dictionary of config
     values.
     """
-    return dict((key, getattr(config, key)) for key in config.values)
+    return {key: getattr(config, key) for key in config.values}
 
 
 def make_links(app):

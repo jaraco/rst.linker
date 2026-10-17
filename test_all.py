@@ -1,5 +1,6 @@
 import locale
 import textwrap
+import types
 
 import pytest
 from path import Path
@@ -142,3 +143,20 @@ def test_deselected(scm_defn):
     """
     repl = rst.linker.URLLinker(scm_defn)
     assert not repl
+
+
+def test_load(tmp_path):
+    config = tmp_path / 'links.py'
+    config.write_text("using = dict(name='value')\n", encoding='utf-8')
+    defn = rst.linker.Replacer.load(str(config))
+    assert defn['using'] == dict(name='value')
+
+
+def test_config_dict():
+    config = types.SimpleNamespace(
+        values=dict(project=None, release=None),
+        project='rst.linker',
+        release='1.0',
+    )
+    expected = dict(project='rst.linker', release='1.0')
+    assert rst.linker.config_dict(config) == expected
